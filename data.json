@@ -1,0 +1,94 @@
+[
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "name": "Sky Class",
+      "description": "Занятия в Sky Class - отслеживайте прогресс учащихся и делайте процесс обучения ещё более увлекательным и разнообразным.",
+      "photo": "",
+      "category": "Education",
+      "price": 100.0,
+      "date_created": "2023-09-10",
+      "date_last_modified": "2023-09-10"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "name": "Sky Workplace",
+      "description": "Удобный инструмент для учёбы и совместной работы в безопасной среде.",
+      "photo": "",
+      "category": "Education",
+      "price": 200.0,
+      "date_created": "2023-09-10",
+      "date_last_modified": "2023-09-10"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+      "name": "Sky Meetings",
+      "description": "Общение на удобной платформе для проведения уроков, собраний и не только.",
+      "photo": "",
+      "category": "Education",
+      "price": 150.0,
+      "date_created": "2023-09-10",
+      "date_last_modified": "2023-09-10"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+      "name": "Sky Podcasts",
+      "description": "Приложение-агрегатор подкастов.",
+      "photo": "",
+      "category": "Entertainment",
+      "price": 70.0,
+      "date_created": "2023-09-10",
+      "date_last_modified": "2023-09-10"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "name": "Education",
+      "description": "IT-решения для образования."
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "name": "Entertainment",
+      "description": "Развлечения"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+      "name": "Security",
+      "description": "Защита данных"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": {
+      "name": "Travel",
+      "description": "Полный цикл сопровождения туристов"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 5,
+    "fields": {
+      "name": "Communication",
+      "description": "Сервисы для коммуникаций"
+    }
+  }
+]
