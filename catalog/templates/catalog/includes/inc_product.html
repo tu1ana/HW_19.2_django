@@ -1,0 +1,12 @@
+<div class="col-3">
+
+    <div class="card mb-4 box-shadow">
+        <a href="{% url 'catalog:product' object.pk %}" class="card-header">
+            <h4 class="my-0 font-weight-normal">{{ object.name }}</h4>
+        </a>
+        <div class="card-body">
+            <p class="card-text">{{ object.description }}</p>
+            <a href="{% url 'catalog:product' object.pk %}" type="button" class="btn btn-lg btn-block btn-outline-primary">Подробнее</button></a>
+        </div>
+    </div>
+</div>
