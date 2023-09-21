@@ -1,14 +1,16 @@
 from django.shortcuts import render, get_list_or_404
+from django.urls import reverse_lazy, reverse
+from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
+from pytils.translit import slugify
 
-from catalog.models import Product
+from catalog.models import Product, BlogEntry
 
 
-def home(request):
-    context = {
-        'object_list': Product.objects.all(),
+class ProductListView(ListView):
+    model = Product
+    extra_context = {
         'title': 'Главная'
     }
-    return render(request, 'catalog/home.html', context)
 
 
 def contacts(request):
@@ -23,8 +25,60 @@ def contacts(request):
     return render(request, 'catalog/contacts.html', context)
 
 
-def product(request, pk):
-    context = {
-        'object_list': Product.objects.filter(pk=pk),
-        }
-    return render(request, 'catalog/product.html', context)
+class ProductDetailView(DetailView):
+    model = Product
+
+
+class BlogEntryCreateView(CreateView):
+    model = BlogEntry
+    fields = ('heading', 'content',)
+    success_url = reverse_lazy('catalog:blogentry_list')
+
+    def form_valid(self, form):
+        if form.is_valid():
+            new_entry = form.save()
+            new_entry.slug = slugify(new_entry.heading)
+            new_entry.save()
+
+        return super().form_valid(form)
+
+
+class BlogEntryListView(ListView):
+    model = BlogEntry
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(is_published=True)
+        return queryset
+
+
+class BlogEntryUpdateView(UpdateView):
+    model = BlogEntry
+    fields = ('heading', 'content',)
+    # success_url = reverse_lazy('catalog:blogentry_list')
+
+    def form_valid(self, form):
+        if form.is_valid():
+            new_entry = form.save()
+            new_entry.slug = slugify(new_entry.heading)
+            new_entry.save()
+
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('catalog:view_blog', args=[self.kwargs.get('pk')])
+
+
+class BlogEntryDetailView(DetailView):
+    model = BlogEntry
+
+    def get_object(self, queryset=None):
+        object = super().get_object(queryset)
+        object.views_count += 1
+        object.save()
+        return object
+
+
+class BlogEntryDeleteView(DeleteView):
+    model = BlogEntry
+    success_url = reverse_lazy('catalog:blogentry_list')
