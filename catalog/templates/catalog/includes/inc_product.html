@@ -1,12 +1,17 @@
-<div class="col-3">
-
+<div class="col">
     <div class="card mb-4 box-shadow">
-        <a href="{% url 'catalog:product' object.pk %}" class="card-header">
-            <h4 class="my-0 font-weight-normal">{{ object.name }}</h4>
-        </a>
+        <div class="card-header">
+            <a href="{% url 'catalog:view_product' object.pk %}">
+                <h4 class="card-title text-primary">{{object.name }}</h4>
+            </a>
+            <h6 class="card-subtitle mb-2 text-muted">{{ object.category}}</h6>
+        </div>
         <div class="card-body">
-            <p class="card-text">{{ object.description }}</p>
-            <a href="{% url 'catalog:product' object.pk %}" type="button" class="btn btn-lg btn-block btn-outline-primary">Подробнее</button></a>
+            <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                <li>{{ object.description|truncatechars:100 }}</li>
+            </ul>
+            <a href="{% url 'catalog:view_product' object.pk %}" type="button"
+               class="btn btn-lg btn-block btn-outline-primary">Подробнее</a>
         </div>
     </div>
 </div>
