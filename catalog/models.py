@@ -38,7 +38,7 @@ class BlogEntry(models.Model):
     slug = models.CharField(max_length=150, verbose_name='slug', null=True, blank=True)
     content = models.TextField(verbose_name='Содержимое')
     image = models.ImageField(upload_to='blog/', ** NULLABLE, verbose_name='Изображение(превью)')
-    date_created = models.DateField(verbose_name='Дата создания')
+    date_created = models.DateField(** NULLABLE, verbose_name='Дата создания')
     is_published = models.BooleanField(default=True, verbose_name='Опубликовано')
     views_count = models.IntegerField(default=0, verbose_name='Количество просмотров')
 
