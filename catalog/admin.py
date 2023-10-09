@@ -18,3 +18,4 @@ class ProductAdmin(admin.ModelAdmin):
 @admin.register(Version)
 class VersionAdmin(admin.ModelAdmin):
     list_display = ('number', 'name',)
+    list_filter = ('is_active',)
