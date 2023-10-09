@@ -10,9 +10,19 @@ from catalog.models import Product, BlogEntry, Version
 
 class ProductListView(ListView):
     model = Product
+    version = Version
     extra_context = {
         'title': 'Главная'
     }
+
+    def get_queryset(self):
+        return super().get_queryset()
+
+    # def get_context_data(self, **kwargs):
+    #     context_data = super().get_context_data(**kwargs)
+    #     context_data['version_list'] = Version.objects.filter(product=self.kwargs.get('product'))
+    #
+    #     return context_data
 
 
 def contacts(request):
@@ -29,19 +39,6 @@ def contacts(request):
 
 class ProductDetailView(DetailView):
     model = Product
-
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        queryset = queryset.filter(pk=self.kwargs.get('pk'))
-        return queryset
-
-    def get_context_data(self, **kwargs):
-        context_data = super().get_context_data(**kwargs)
-        product_item = Product.objects.get(pk=self.kwargs.get('pk'))
-        context_data['object_list'] = product_item
-        version_list = Version.objects.filter(product=context_data['product'])
-        context_data['version_list'] = version_list
-        return context_data
 
 
 class ProductCreateView(CreateView):
